@@ -1,0 +1,56 @@
+$color-blue: #1b02fc;
+$color-orange: #ffb100;
+$color-gray: #c3c3c3;
+$color-white: #ffffff;
+
+//To make flex display work for all browsers
+@mixin flex {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+}
+
+ul.customRadioGroup {
+	@include flex;
+	flex-direction: column;
+
+	li {
+		@include flex;
+		margin-bottom: 14px;
+		color: $color-blue;
+
+		input {
+			opacity: 0; //hide from view
+
+      //change the color of the span when the input is checked
+			&:checked {
+				& + span {
+					background-color: $color-orange;
+					border-color: $color-orange;
+				}
+			}
+
+      //add a border and box-shadow to the span when the input has focus
+			&:focus {
+				& + span {
+					outline: none;
+					border: solid 1px $color-gray;
+					box-shadow: 0 0 0 2px $color-gray;
+				}
+			}
+		}
+
+		span {
+			width: 14px;
+			height: 14px;
+			border-radius: 50%; //make it round
+			margin-right: 10px;
+			border: 1px solid $color-gray;
+			background-color: $color-white;
+			display: inline-block;
+			margin-left: -12px; //cover hidden input
+		}
+	}
+}
